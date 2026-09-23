@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For My Babyy Boy ♡</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;font-family:Arial,sans-serif}
+body{overflow:hidden;background:linear-gradient(135deg,#ffdce8,#fff7fa 50%,#f8d9e7);color:#5a3040}
+.page{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;visibility:hidden;transform:translateX(30px);transition:opacity .45s,transform .45s,visibility .45s}
+.page.active{opacity:1;visibility:visible;transform:translateX(0)}
+.card{width:min(430px,92vw);padding:38px 28px;border-radius:32px;text-align:center;background:rgba(255,255,255,.86);box-shadow:0 20px 60px rgba(120,45,80,.18);border:1px solid rgba(255,255,255,.9)}
+.icon{font-size:60px;animation:pulse 1.5s infinite}.mini{font-size:14px;opacity:.7}
+h1{font-size:32px;margin:12px 0;color:#8b405d}h2{font-size:27px;margin:10px 0 18px;color:#8b405d}
+p{font-size:18px;line-height:1.65;margin:12px 0}
+button{display:inline-block;border:0;border-radius:999px;padding:16px 30px;margin-top:20px;background:#d9638b;color:#fff;font-size:17px;font-weight:700;cursor:pointer;box-shadow:0 9px 20px rgba(190,70,110,.25);-webkit-tap-highlight-color:transparent}
+button:active{transform:scale(.96)}
+.tag{display:inline-block;background:#ffe4ed;padding:9px 13px;border-radius:20px;margin:4px;font-size:14px}
+.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden}.hearts span{position:absolute;font-size:22px;opacity:.45;animation:rise 7s linear infinite}.h1{left:10%;bottom:-30px}.h2{left:35%;bottom:-50px;animation-delay:2s!important}.h3{right:20%;bottom:-20px;animation-delay:4s!important}.h4{right:8%;bottom:-60px;animation-delay:1s!important}
+@keyframes rise{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}@keyframes pulse{50%{transform:scale(1.1)}}
+</style>
+</head>
+<body>
+<div class="hearts"><span class="h1">♡</span><span class="h2">♡</span><span class="h3">✦</span><span class="h4">♡</span></div>
+
+<section class="page active" id="page1"><div class="card">
+<div class="icon">🥺</div><h1>Hey, my Babyy Boy ♡</h1>
+<p>I heard my favourite person isn't feeling well...</p>
+<p class="mini">So I made something tiny just for you.</p>
+<button type="button" onclick="go(2)">Come here 🤍</button>
+</div></section>
+
+<section class="page" id="page2"><div class="card">
+<div class="icon">🫶</div><h2>Promise me one thing?</h2>
+<p>Take care of yourself for me, okay?</p>
+<div><span class="tag">Rest 🛌</span><span class="tag">Drink water 💧</span><span class="tag">Take care 💊</span></div>
+<p>I know you're not feeling your best right now, so please don't forget to be gentle with yourself.</p>
+<button type="button" onclick="go(3)">I promise ♡</button>
+</div></section>
+
+<section class="page" id="page3"><div class="card">
+<div class="icon">🩷</div><h2>Something I want you to know</h2>
+<p>No matter how many fights we have, how stubborn we get, or how much we annoy each other...</p>
+<p><b>I'm not leaving you.</b></p>
+<p>I care about you way more than all those little fights. So please get better soon, my Babyy Boy.</p>
+<button type="button" onclick="go(4)">One last thing 🥺</button>
+</div></section>
+
+<section class="page" id="page4"><div class="card">
+<div class="icon">🫂</div><h2>And remember...</h2>
+<p>We could have infinite fights, but I know one hug from me will melt you down anyway. 🥺</p>
+<p><b>So get well soon, my Babyy Boy.</b></p>
+<p>Now go rest. That's an order. 😤🩷</p>
+<p class="mini">Made with lots and lots of love ♡</p>
+<button type="button" onclick="go(1)">Read it again ♡</button>
+</div></section>
+
+<script>
+function go(n){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById('page'+n).classList.add('active');
+}
+</script>
+</body>
+</html>

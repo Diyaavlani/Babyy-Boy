@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>For My Babyy Boy 💗</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;color:#fff;min-height:100vh;overflow-x:hidden}
+.screen{display:none;min-height:100vh;padding:30px 16px;align-items:center;justify-content:center;text-align:center}.screen.active{display:flex}
+.card{width:min(720px,94vw);padding:30px 20px;border-radius:28px;background:rgba(20,10,35,.72);border:1px solid rgba(255,255,255,.18);box-shadow:0 20px 70px rgba(0,0,0,.35);backdrop-filter:blur(10px)}
+h1{font-size:clamp(30px,8vw,56px);margin:0 0 14px}h2{font-size:clamp(24px,6vw,40px);margin:0 0 18px}p{font-size:18px;line-height:1.6}
+.btn,.opt{border:0;border-radius:16px;padding:14px 18px;margin:7px;background:linear-gradient(135deg,#ff7eb3,#a66cff);color:white;font-weight:700;font-size:16px;cursor:pointer;transition:.2s}.btn:hover,.opt:hover{transform:translateY(-2px)}.opts{display:flex;flex-wrap:wrap;justify-content:center}.opt{width:min(100%,330px);text-align:left}.popup{display:none;margin-top:18px;padding:16px;border-radius:18px;background:rgba(255,255,255,.1);line-height:1.55}.popup.show{display:block}
+.result{text-align:left;margin-top:20px;padding:18px;border-radius:20px;background:rgba(255,255,255,.08)}.small{opacity:.8;font-size:14px}
+body.s1{background:radial-gradient(circle at 20% 20%,#7b2cbf,#18002d 55%,#07000f)}body.s2{background:radial-gradient(circle at 80% 15%,#ff5f9e,#32104f 50%,#090014)}body.s3{background:radial-gradient(circle at 30% 10%,#00a6a6,#071b35 48%,#02030c)}body.s4{background:radial-gradient(circle at 70% 20%,#ff9f43,#4b164c 45%,#11000e)}
+.float{position:fixed;inset:0;pointer-events:none;overflow:hidden}.heart{position:absolute;bottom:-30px;animation:up 7s linear infinite;opacity:.45;font-size:22px}@keyframes up{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+.memory-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}.memory{padding:18px;border-radius:18px;background:rgba(255,255,255,.12);cursor:pointer}.memory.selected{outline:2px solid #fff}
+@media(max-width:520px){.memory-grid{grid-template-columns:1fr}p{font-size:16px}}
+</style>
+</head>
+<body class="s1"><div class="float" id="float"></div>
+
+<section class="screen active" id="home"><div class="card">
+<div class="small">A tiny little challenge made just for you 💗</div><h1>HAPPY BOYFRIEND DAY<br>MY BABYY BOY 🥹</h1>
+<p>Three games. One final message.<br>Think you know us? 👀</p><button class="btn" onclick="show('intro1')">🎮 START</button>
+</div></section>
+
+<section class="screen" id="intro1"><div class="card"><h2>💗 GAME 1<br>DO YOU REALLY KNOW US?</h2><p>Let's see how well you know your girl. 😭</p><button class="btn" onclick="quizStart()">LET'S GO →</button></div></section>
+<section class="screen" id="q"><div class="card"><div class="small" id="qnum"></div><h2 id="qt"></h2><div class="opts" id="qo"></div><div class="popup" id="qp"></div></div></section>
+
+<section class="screen" id="intro2"><div class="card"><h2>🎮 GAME 2<br>BUILD OUR PERFECT DATE 💗</h2><p>You get to plan our entire date.<br>Choose wisely… because I'm judging your choices 👀😂</p><button class="btn" onclick="dateStart()">LET'S PLAN IT →</button></div></section>
+<section class="screen" id="d"><div class="card"><div class="small" id="dnum"></div><h2 id="dt"></h2><div class="opts" id="do"></div></div></section>
+<section class="screen" id="dr"><div class="card"><h2>💗 YOUR PERFECT DATE</h2><div class="result" id="result"></div><p>Okay… I can't lie. I'd actually love this date. 🥹🤍</p><button class="btn" onclick="show('intro3')">🎮 NEXT GAME →</button></div></section>
+
+<section class="screen" id="intro3"><div class="card"><h2>🔐 ONE LAST CHALLENGE</h2><p>You've made it this far…<br>But there's one last thing you have to unlock. 👀</p><button class="btn" onclick="memoryGame()">ACCEPT THE CHALLENGE →</button></div></section>
+<section class="screen" id="m"><div class="card"><h2>🧠 MEMORY MATCH</h2><p>Match each one with the right category.<br>It's not about being perfect — it's about remembering <b>us</b>. 🤍</p><div class="memory-grid" id="mg"></div><button class="btn" id="mb" style="display:none" onclick="final()">🔓 UNLOCK THE FINAL MESSAGE</button></div></section>
+
+<section class="screen" id="f"><div class="card">
+<h2>YOU MADE IT. 🤍</h2><p>Now there's nothing left to unlock.<br>Just one little message I wanted you to read. 🥹</p>
+<p><b>Tysm for being such a great bf to this clumsy, stupid, forgetful girl of yours. 😭🤍</b></p>
+<p>Thank you for all the little things you've done, all the laughs, memories, random conversations, and all the moments we've shared. 🥹</p>
+<p><b>Pritt, you don't get any option to leave me 😭. Mane khabar che tane kai nathi chaltu, please have nai. Tari sathe vaat na thay toh maro jeev aakho divas uncho ne uncho rahe 😭. Udak please, I'm sorry. 🥹🤍</b></p>
+<p><b>Happy Boyfriend Day, Babyy Boy. 🥹💗</b></p>
+</div></section>
+
+<script>
+const screens=[...document.querySelectorAll('.screen')];
+function show(id){screens.forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+for(let i=0;i<18;i++){let h=document.createElement('div');h.className='heart';h.textContent=['♡','♥','✦','💗'][i%4];h.style.left=Math.random()*100+'%';h.style.animationDelay=Math.random()*6+'s';document.getElementById('float').appendChild(h)}
+
+const quiz=[
+["If I suddenly become quiet, what is probably going on?",["I'm annoyed 😭","I'm overthinking something","I want you to notice and ask me what's wrong","All of the above"],3],
+["If we had a completely free day together, what would I most likely choose?",["Go on a little date","Stay together and talk for hours","Do something spontaneous","Honestly, anything as long as you're there"],3],
+["Which one would I secretly find the cutest?",["You remembering a tiny detail I told you","You randomly checking on me","You doing something thoughtful without being asked","You sleeping like a baby 🥹","All of the above 🤍"],4],
+["If I could replay ONE moment with you, what would I choose?",["Our first proper meeting","Our first kiss 💋","Our funniest moment","A completely random moment only we remember"],1],
+["What is something you do that can instantly make me smile?",["Say something completely stupid 😂","Give me that look that only you give me","Randomly do something cute","Literally just be yourself 🤍"],3],
+["What do you want to do with me right now? 👀",["Give me the biggest hug ever 🤗","Punch me because I'm annoying you 😭","Kick me and run away 💀","Forget everything for a while, cuddle up, and just enjoy being together 🤍"],3],
+["What would be our dream trip together?",["A beach vacation 🌊","Exploring a new city 🏙️","Us travelling together in the mountains 🏔️","A random road trip with no proper plan 😂"],3],
+["If you could keep only ONE thing from our relationship forever, what should it be?",["Our memories","Our inside jokes","Our conversations","The feeling we have when we're together 🥹"],3],
+["What was the FIRST thing you noticed about me?",["My eyes","My smile","My personality","Something completely different 👀"],3],
+["After everything we've been through, all our fights, all our memories, all the good and bad days… would you still choose me?",["Always.","Of course I would.","Every single time.","There was never another option. 🥹❤️"],3]
+];
+const reacts=[
+["Okayyy… you actually know me 👀🤍","Hmmmm… do you even know your girl? 😭"],
+["Honestly, any day with you sounds pretty perfect 🥹","Hmm… interesting choice 👀"],
+["Awww, you noticed that? 🥺 You get points for this one.","Okayyy, I see what you picked 👀"],
+["STOPPP 😭 You really remembered that moment.","Hmmmm… you would've picked another one? 😭"],
+["See?? You know exactly how to make me smile 😭💗","Okay, I'll remember that answer 👀"],
+["Okay fine… come here 🥺🤍","EXCUSE ME??? 😭 I knew you were violent.","HELPPP 😭 You chose violence today.","Okay… all the fighting is cancelled for now. Come here 🤍"],
+["Okayyy, so when are we packing our bags? 🏔️😭","That sounds like an adventure 👀"],
+["That answer just made my heart a little soft 🥹🤍","Hmm… noted 👀"],
+["Wait… THAT was the first thing you noticed?! 👀😭","Interestinggg… I need to hear the story now 😭"],
+["And that's the answer I wanted to hear… 🥹<br><br>Whatever happens, whatever we've been through, and however many stupid fights we've had… I'll always be grateful for every memory we've made. 🤍"]
+];
+let qi=0;
+function quizStart(){qi=0;show('q');renderQ()}
+function renderQ(){let x=quiz[qi],n=document.getElementById('qnum'),t=document.getElementById('qt'),box=document.getElementById('qo'),p=document.getElementById('qp');n.textContent=`QUESTION ${qi+1} / 10`;t.textContent=x[0];box.innerHTML='';p.className='popup';x[1].forEach((a,i)=>{let b=document.createElement('button');b.className='opt';b.textContent=String.fromCharCode(65+i)+') '+a;b.onclick=()=>answer(i);box.appendChild(b)})}
+function answer(i){let p=document.getElementById('qp');p.innerHTML=qi===9?reacts[9][0]:reacts[qi][i]||reacts[qi][1];p.className='popup show';document.querySelectorAll('#qo button').forEach(b=>b.disabled=true);let b=document.createElement('button');b.className='btn';b.textContent=qi===9?'🎮 OKAY, NEXT GAME!':'NEXT →';b.onclick=()=>{if(qi===9)show('intro2');else{qi++;renderQ()}};p.appendChild(b)}
+
+const dates=[
+["WHERE ARE WE GOING?",["🏔️ Mountains — cozy weather & beautiful views","🌊 Beach — sunset, waves & walking together","🌃 City at Night — lights, food & exploring","🌳 Nature Getaway — peaceful place away from everyone"]],
+["HOW ARE WE GETTING THERE?",["🚗 Road trip — music, snacks & random conversations","🚆 Train journey — sitting together & watching the views","✈️ Flight — because we're going somewhere far 😭","🛵 Random little adventure — no plan, just us"]],
+["WHAT ARE WE EATING?",["🍕 Pizza & fries — simple but perfect","🍝 Fancy dinner — dressing up for each other","🍦 Ice cream & street food — walking around and eating everything","🍿 Snacks + movie — cozy date mode"]],
+["WHAT'S THE VIBE?",["🎶 Our songs","💗 Soft romantic music","😂 Random songs that make us laugh","🔇 No music — just us talking"]],
+["THE PERFECT MOMENT",["🌅 Watch the sunset together","🌌 Find somewhere quiet and look at the stars","🚗 Go for a late-night drive","🤍 Just sit together and talk about everything"]],
+["THE ENDING",["🤗 The biggest hug ever","😂 Doing something completely stupid together","💌 A surprise that neither of us expected","🥹 Making one last memory before going home"]]
+];
+let di=0,choices=[];
+function dateStart(){di=0;choices=[];show('d');renderD()}
+function renderD(){let x=dates[di];document.getElementById('dnum').textContent=`ROUND ${di+1} / 6`;document.getElementById('dt').textContent=x[0];let box=document.getElementById('do');box.innerHTML='';x[1].forEach((a,i)=>{let b=document.createElement('button');b.className='opt';b.textContent=String.fromCharCode(65+i)+'. '+a;b.onclick=()=>{choices.push(a);di++;di<dates.length?renderD():dateResult()};box.appendChild(b)})}
+function dateResult(){show('dr');let labels=["🏔️ Destination","🚗 Journey","🍕 Food","🎶 Vibe","🌅 Moment","🤗 Ending"];document.getElementById('result').innerHTML=choices.map((x,i)=>`<p><b>${labels[i]}:</b> ${x}</p>`).join('')}
+
+const memories=["😂 Something that made us laugh like idiots","🥹 Something I'll always remember","🤍 Something small you did that meant a lot","👀 Something only we would understand"];
+function memoryGame(){show('m');let box=document.getElementById('mg');box.innerHTML='';document.getElementById('mb').style.display='none';let count=0;memories.forEach(x=>{let d=document.createElement('div');d.className='memory';d.textContent=x;d.onclick=()=>{if(!d.classList.contains('selected')){d.classList.add('selected');count++}if(count===4)document.getElementById('mb').style.display='inline-block'};box.appendChild(d)})}
+function final(){show('f')}
+</script></body></html>
